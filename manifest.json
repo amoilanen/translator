@@ -1,0 +1,33 @@
+{
+  "name": "Translator plugin for Chrome",
+  "version": "0.1",
+  "description": "Enables ad-hoc translation for single words in a loaded Web document",
+  "permissions": [
+    "webRequest",
+    "webRequestBlocking",
+    "<all_urls>"
+  ],
+  "page_action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "content_scripts": [{
+    "matches": [
+      "http://*/*",
+      "https://*/*"
+    ],
+    "js": ["translate.js"],
+    "run_at": "document_end"
+  },
+  {
+    "all_frames": true,
+    "matches": [
+      "https://translate.google.com/*"
+    ],
+    "js": ["iframe.js"],
+    "run_at": "document_end"
+  }],
+  "manifest_version": 2
+}

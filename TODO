@@ -1,0 +1,6 @@
+- Get a translation for a single hardcoded word "valo" when the extension is loaded - OK
+
+- Detect which word is currently selected when the extension is active and try to translate it (define a shortcut?), console.log translation
+- Display translation as a popup over the word being clicked
+- Enable the user to select the source and target languages for translation and use them
+- Re-factor and add tests
