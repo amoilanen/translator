@@ -13,11 +13,37 @@ document.body.appendChild(iframe);
 
 console.log("Ran main content script!");
 
+function showTranslation(translation) {
+  const selection = document.getSelection();
+  const firstSelectionRange = selection.getRangeAt(0);
+  const selectionBoundingClientRect = firstSelectionRange.getBoundingClientRect();
+  const popupPosition = {
+    top: selectionBoundingClientRect.top + selectionBoundingClientRect.height,
+    left: selectionBoundingClientRect.left
+  };
+
+  const translationPopup = document.createElement('span');
+  translationPopup.style.display = 'inline-block;';
+  translationPopup.style.height = '20px';
+  translationPopup.style.backgroundColor = '#badcfe';
+  translationPopup.style.position = 'fixed';
+  translationPopup.style.left = `${popupPosition.left}px`;
+  translationPopup.style.top = `${popupPosition.top}px`;
+  translationPopup.innerText = translation;
+  document.body.appendChild(translationPopup);
+
+  setTimeout(() => {
+    document.body.removeChild(translationPopup);
+  }, 2000);
+}
+
 window.addEventListener('message', event => {
   try {
     const message = JSON.parse(event.data);
     if (message.type === 'translation:ready') {
-      console.log(`Received translation = ${message.payload}`);
+      const translation = message.payload;
+      console.log(`Received translation = ${translation}`);
+      showTranslation(translation);
     }
   } catch (error) {
     console.log(error);
