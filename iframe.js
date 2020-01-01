@@ -21,12 +21,17 @@ function sendTranslationToParent(translation) {
 window.addEventListener('message', event => {
   const message = JSON.parse(event.data);
   if (message.type === 'translation:request') {
-    const toTranslate = message.payload;
+    const requestedToTranslate = message.payload.trim();
 
     const checkForResultInterval = setInterval(() => {
-        const translationElement = document.querySelector('.tlid-translation.translation');
-        if (translationElement) {
-          const translation = translationElement.innerText;
+        const translationSourceElement = document.querySelector("#source");
+        const translationResultElement = document.querySelector('.tlid-translation.translation');
+
+        const translationSourceText = translationSourceElement.value.trim();
+        const translation = translationResultElement.innerText;
+        const isTranslationInProgress = translation.endsWith('...');
+
+        if (translationResultElement && (translationSourceText === requestedToTranslate) && !isTranslationInProgress){
           console.log("translation in iFrame = ", translation);
           sendTranslationToParent(translation);
           clearInterval(checkForResultInterval);
