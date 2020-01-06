@@ -1,10 +1,14 @@
 - Get a translation for a single hardcoded word "valo" when the extension is loaded - OK
 - Detect which word is currently selected when the extension is active and try to translate it (define a shortcut?), console.log translation - OK
 
-- Display translation as a popup over the word being clicked
+- Display translation as a popup over the word being clicked - OK
 
 - Use browser modules to modularize the code
 - Use Typescript, compile the extension
 
+- Add support for using Yandex translate 
+- Add support for using Bing translate
+
 - Enable the user to select the source and target languages for translation and use them
+- Enable the user to select translation engines (possibly several at once)
 - Re-factor and add tests
