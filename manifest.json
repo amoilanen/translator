@@ -11,14 +11,14 @@
     "default_popup": "popup.html"
   },
   "background": {
-    "scripts": ["src/enable.iframe.embedding.js"]
+    "page": "background.html"
   },
   "content_scripts": [{
     "matches": [
       "http://*/*",
       "https://*/*"
     ],
-    "js": ["src/translate.js"],
+    "js": ["content.js"],
     "run_at": "document_end"
   },
   {
@@ -29,5 +29,8 @@
     "js": ["src/iframe.js"],
     "run_at": "document_end"
   }],
+  "web_accessible_resources": [
+    "src/*"
+  ],
   "manifest_version": 2
 }

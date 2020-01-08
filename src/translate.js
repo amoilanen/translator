@@ -1,4 +1,4 @@
-import { showTranslation } from './translation/popup.js';
+import ResultPopup from './translate/ResultPopup.js';
 
 function constructFrameUrl(word) {
   return `https://translate.google.com/#view=home&op=translate&sl=fi&tl=en&text=${word}`;
@@ -15,6 +15,7 @@ document.body.appendChild(iframe);
 
 console.log("Ran main content script!");
 
+const resultPopup = new ResultPopup().init();
 
 window.addEventListener('message', event => {
   try {
@@ -22,7 +23,10 @@ window.addEventListener('message', event => {
     if (message.type === 'translation:ready') {
       const translation = message.payload;
       console.log(`Received translation = ${translation}`);
-      showTranslation(translation);
+      resultPopup.show(translation);
+      /*setTimeout(() => {
+        resultPopup.hide();
+      }, 2000);*/
     }
   } catch (error) {
     console.log(error);
