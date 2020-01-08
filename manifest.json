@@ -11,14 +11,14 @@
     "default_popup": "popup.html"
   },
   "background": {
-    "scripts": ["background.js"]
+    "scripts": ["src/enable.iframe.embedding.js"]
   },
   "content_scripts": [{
     "matches": [
       "http://*/*",
       "https://*/*"
     ],
-    "js": ["translate.js"],
+    "js": ["src/translate.js"],
     "run_at": "document_end"
   },
   {
@@ -26,7 +26,7 @@
     "matches": [
       "https://translate.google.com/*"
     ],
-    "js": ["iframe.js"],
+    "js": ["src/iframe.js"],
     "run_at": "document_end"
   }],
   "manifest_version": 2
