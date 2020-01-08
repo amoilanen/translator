@@ -24,9 +24,9 @@ window.addEventListener('message', event => {
       const translation = message.payload;
       console.log(`Received translation = ${translation}`);
       resultPopup.show(translation);
-      /*setTimeout(() => {
+      setTimeout(() => {
         resultPopup.hide();
-      }, 2000);*/
+      }, 2000);
     }
   } catch (error) {
     console.log(error);

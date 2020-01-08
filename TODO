@@ -11,5 +11,5 @@
 
 - Enable the user to select the source and target languages for translation and use them
 - Enable the user to select translation engines (possibly several at once)
+- Use Web components or components from another library (Vue, React, Angular)
 - Re-factor and add tests
-- Use a frontend library (Vue, React, Angular) to show the translation popup
