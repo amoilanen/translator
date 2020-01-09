@@ -37,6 +37,6 @@ export default class ResultPopup {
   }
 
   hide() {
-    this.translationPopup.style.display = 'none;';
+    this.translationPopup.style.display = 'none';
   }
 }
