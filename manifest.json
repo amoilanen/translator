@@ -30,7 +30,8 @@
     "run_at": "document_end"
   }],
   "web_accessible_resources": [
-    "src/*"
+    "src/*",
+    "node_modules/*"
   ],
   "manifest_version": 2
 }

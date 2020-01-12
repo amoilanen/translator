@@ -1,3 +1,18 @@
+const template = `
+  <span class="result-popup"></span>
+`;
+
+const style = `
+  .result-popup {
+    height: 20px;
+    background-color: #badcfe;
+    position: fixed;
+    display: none;
+  }
+  .result-popup__shown {
+    display: inline-block;
+  }
+`;
 
 function getSelectionCoordinates() {
   const selection = document.getSelection();
@@ -7,36 +22,49 @@ function getSelectionCoordinates() {
   return firstSelectionRange.getBoundingClientRect();
 }
 
-export default class ResultPopup {
+class ResultPopup extends HTMLElement {
 
   constructor() {
+    super();
   }
 
-  init() {
-    this.translationPopup = document.createElement('span');
-    this.translationPopup.style.height = '20px';
-    this.translationPopup.style.backgroundColor = '#badcfe';
-    this.translationPopup.style.position = 'fixed';
-    this.translationPopup.innerText = '';
-    this.translationPopup.style.display = 'none';
-    document.body.appendChild(this.translationPopup);
-    return this;
+  connectedCallback() {
+    this.root = this.attachShadow({ mode: 'closed' });
+
+    // Clone and insert template
+    const templateElement = document.createElement('template');
+    templateElement.innerHTML = template;
+    this.root.appendChild(templateElement.content.cloneNode(true));
+
+    // Insert style
+    const styleElement = document.createElement('style');
+    styleElement.textContent = style;
+    this.root.appendChild(styleElement);
+
+    this.resultPopup = this.root.querySelector('.result-popup');
   }
 
   show(translation) {
     const selectionBoundingClientRect = getSelectionCoordinates();
-    const popupPosition = {
+    const positionToShowAt = {
       top: selectionBoundingClientRect.top + selectionBoundingClientRect.height,
       left: selectionBoundingClientRect.left
     };
 
-    this.translationPopup.style.display = '';
-    this.translationPopup.style.left = `${popupPosition.left}px`;
-    this.translationPopup.style.top = `${popupPosition.top}px`;
-    this.translationPopup.innerText = translation;
+    this.resultPopup.style.left = `${positionToShowAt.left}px`;
+    this.resultPopup.style.top = `${positionToShowAt.top}px`;
+    this.resultPopup.innerText = translation;
+    this.resultPopup.classList.add('result-popup__shown');
   }
 
   hide() {
-    this.translationPopup.style.display = 'none';
+    this.resultPopup.innerText = '';
+    this.resultPopup.classList.remove('result-popup__shown');
   }
 }
+
+/*
+ * We have to use a polyfill because Chrome does not implement custom elements for content scripts yet
+ * https://bugs.chromium.org/p/chromium/issues/detail?id=390807
+ */
+customElements.define('ts-result-popup', ResultPopup);

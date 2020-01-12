@@ -6,7 +6,7 @@ const without = (arr, propertyAccessor, withoutProperties) =>
   );
 
 const headerNamesToIgnore = [
-  'x-frame-options',
+  'x-frame-options'
 ];
 
 const urls = [

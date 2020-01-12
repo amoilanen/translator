@@ -1,5 +1,4 @@
-import ResultPopup from './translate/ResultPopup.js';
-//import './translate/ResultPopup.js';
+import './translate/ResultPopup.js';
 
 function constructFrameUrl(word) {
   return `https://translate.google.com/#view=home&op=translate&sl=fi&tl=en&text=${word}`;
@@ -16,9 +15,9 @@ document.body.appendChild(iframe);
 
 console.log("Ran main content script!");
 
-const resultPopup = new ResultPopup().init();
-//const resultPopup = document.createElement('ts-result-popup');
-//document.body.appendChild(resultPopup);
+//const resultPopup = new ResultPopup().init();
+const resultPopup = document.createElement('ts-result-popup');
+document.body.appendChild(resultPopup);
 
 window.addEventListener('message', event => {
   try {
