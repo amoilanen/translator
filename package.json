@@ -1,0 +1,25 @@
+{
+  "name": "translator",
+  "version": "0.0.1",
+  "description": "Translator plugin for Chrome that enables ad-hoc usage of several translation engines",
+  "main": "content.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/antivanov/translator.git"
+  },
+  "keywords": [
+    "translator",
+    "Chrome",
+    "plugin",
+    "plugin"
+  ],
+  "author": "anton.al.ivanov@gmail.com",
+  "license": "LGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/antivanov/translator/issues"
+  },
+  "homepage": "https://github.com/antivanov/translator#readme"
+}
