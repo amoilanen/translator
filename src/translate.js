@@ -1,34 +1,16 @@
 import './translate/ResultPopup.js';
-
-function constructFrameUrl(word) {
-  return `https://translate.google.com/#view=home&op=translate&sl=fi&tl=en&text=${word}`;
-}
-
-let url = constructFrameUrl('valo');
-
-let iframe = document.createElement('iframe');
-iframe.src = url;
-iframe.setAttribute('name', 'translation-frame')
-iframe.style.display = 'none';
-
-document.body.appendChild(iframe);
+import TranslationCoordinator from './translate/TranslationCoordinator.js';
 
 console.log("Ran main content script!");
 
-//const resultPopup = new ResultPopup().init();
-const resultPopup = document.createElement('ts-result-popup');
-document.body.appendChild(resultPopup);
+const manager = new TranslationCoordinator().init();
 
 window.addEventListener('message', event => {
   try {
     const message = JSON.parse(event.data);
     if (message.type === 'translation:ready') {
       const translation = message.payload;
-      console.log(`Received translation = ${translation}`);
-      resultPopup.show(translation);
-      setTimeout(() => {
-        resultPopup.hide();
-      }, 2000);
+      manager.showTranslation(translation);
     }
   } catch (error) {
     console.log(error);
@@ -42,8 +24,8 @@ document.addEventListener('selectionchange', event => {
   //console.log(selectedText);
 
   if (selectedText.length > 0) {
+    manager.requestTranslation(selectedText);
     const iframe = document.querySelector('iframe[name=translation-frame]');
-    iframe.setAttribute('src', constructFrameUrl(selectedText));
 
     const message = {
       type: 'translation:request',
