@@ -1,3 +1,5 @@
+import { sendMessage, Messages } from '../Messages.js';
+
 function constructFrameUrl(word) {
   return `https://translate.google.com/#view=home&op=translate&sl=fi&tl=en&text=${word}`;
 }
@@ -37,5 +39,6 @@ export default class TranslationCoordinator {
 
   requestTranslation(text) {
     this.iframe.setAttribute('src', constructFrameUrl(text));
+    sendMessage(this.iframe.contentWindow, Messages.TranslationRequest, text);
   }
 }
