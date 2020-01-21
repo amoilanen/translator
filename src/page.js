@@ -1,5 +1,5 @@
-import './translate/ResultPopup.js';
-import TranslationCoordinator from './translate/TranslationCoordinator.js';
+import './page/ResultPopup.js';
+import TranslationCoordinator from './page/TranslationCoordinator.js';
 
 console.log("Ran main content script!");
 
