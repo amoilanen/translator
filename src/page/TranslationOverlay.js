@@ -1,4 +1,4 @@
-import { sendMessage, Messages } from '../Messages.js';
+import { addMessageListener, sendMessage, Messages } from '../Messages.js';
 
 function constructFrameUrl(word) {
   return `https://translate.google.com/#view=home&op=translate&sl=fi&tl=en&text=${word}`;
@@ -18,7 +18,7 @@ function createIFrame() {
   return iframe;
 }
 
-export default class TranslationCoordinator {
+export default class TranslationOverlay {
 
   constructor() {
   }
@@ -26,6 +26,9 @@ export default class TranslationCoordinator {
   init() {
     this.resultPopup = createdPopup();
     this.iframe = createIFrame();
+    addMessageListener(window, Messages.TranslationReady, translation => {
+      this.showTranslation(translation);
+    });
     return this;
   }
 

@@ -19,7 +19,7 @@
       "http://*/*",
       "https://*/*"
     ],
-    "js": ["content.js"],
+    "js": ["page.index.js"],
     "run_at": "document_end"
   },
   {
@@ -27,7 +27,7 @@
     "matches": [
       "https://translate.google.com/*"
     ],
-    "js": ["src/iframe.js"],
+    "js": ["iframe.index.js"],
     "run_at": "document_end"
   }],
   "web_accessible_resources": [

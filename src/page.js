@@ -1,17 +1,12 @@
 import './page/ResultPopup.js';
-import TranslationCoordinator from './page/TranslationCoordinator.js';
-import { addMessageListener, Messages } from './Messages.js';
+import TranslationOverlay from './page/TranslationOverlay.js';
 
-const coordinator = new TranslationCoordinator().init();
-
-addMessageListener(window, Messages.TranslationReady, translation => {
-  coordinator.showTranslation(translation);
-});
+const overlay = new TranslationOverlay().init();
 
 document.addEventListener('selectionchange', event => {
   const selectedText = document.getSelection().toString();
 
   if (selectedText.length > 0) {
-    coordinator.requestTranslation(selectedText);
+    overlay.requestTranslation(selectedText);
   }
 });
