@@ -1,9 +1,5 @@
 import { addMessageListener, sendMessage, Messages } from '../Messages.js';
 
-function constructFrameUrl(word) {
-  return `https://translate.google.com/#view=home&op=translate&sl=fi&tl=en&text=${word}`;
-}
-
 function createdPopup() {
   const resultPopup = document.createElement('ts-result-popup');
   document.body.appendChild(resultPopup);
@@ -12,7 +8,8 @@ function createdPopup() {
 
 function createIFrame() {
   const iframe = document.createElement('iframe');
-  iframe.setAttribute('name', 'translation-frame')
+  iframe.setAttribute('name', 'translation-frame');
+  iframe.src = "https://translate.google.com";
   iframe.style.display = 'none';
   document.body.appendChild(iframe);
   return iframe;
@@ -41,7 +38,6 @@ export default class TranslationOverlay {
   }
 
   requestTranslation(text) {
-    this.iframe.setAttribute('src', constructFrameUrl(text));
     sendMessage(this.iframe.contentWindow, Messages.TranslationRequest, text);
   }
 }

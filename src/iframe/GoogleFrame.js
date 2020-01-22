@@ -1,5 +1,9 @@
 import { addMessageListener, sendMessage, Messages } from '../Messages.js';
 
+function constructFrameUrl(text) {
+  return `https://translate.google.com/#view=home&op=translate&sl=fi&tl=en&text=${text}`;
+}
+
 export default class GoogleFrame {
 
   constructor() {
@@ -21,6 +25,7 @@ export default class GoogleFrame {
   }
 
   translate(sourceText) {
+    window.location.href = constructFrameUrl(sourceText);
     sourceText = sourceText.trim();
     const checkForResultInterval = setInterval(() => {
       if (this.isTranslationReady(sourceText)) {
