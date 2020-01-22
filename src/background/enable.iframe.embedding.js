@@ -10,7 +10,8 @@ const headerNamesToIgnore = [
 ];
 
 const urls = [
-  'https://translate.google.com/*'
+  'https://translate.google.com/*',
+  'https://bing.com/*'
 ];
 
 const options = [

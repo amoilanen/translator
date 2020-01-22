@@ -9,7 +9,8 @@ function createdPopup() {
 function createIFrame() {
   const iframe = document.createElement('iframe');
   iframe.setAttribute('name', 'translation-frame');
-  iframe.src = "https://translate.google.com";
+  //iframe.src = "https://translate.google.com";
+  iframe.src = "https://www.bing.com/translator";
   iframe.style.display = 'none';
   document.body.appendChild(iframe);
   return iframe;
