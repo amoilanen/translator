@@ -7,6 +7,7 @@
 
 - Re-factor commonality between GoogleFrame and BingFrame
 - Pass source and target languages as part of the translation request to the translator iframe
+  Return translation engine name as part of the response
 
 - Add support for using Yandex translate
 

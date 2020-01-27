@@ -1,12 +1,17 @@
+import Storage from './util/Storage.js';
 import './page/ResultPopup.js';
 import TranslationOverlay from './page/TranslationOverlay.js';
 
-const overlay = new TranslationOverlay().init();
 
-document.addEventListener('selectionchange', event => {
-  const selectedText = document.getSelection().toString();
+(async function() {
+  await Storage.set('translation.engine', 'bing');
+  const overlay = await new TranslationOverlay().init();
 
-  if (selectedText.length > 0) {
-    overlay.requestTranslation(selectedText);
-  }
-});
+  document.addEventListener('selectionchange', event => {
+    const selectedText = document.getSelection().toString();
+
+    if (selectedText.length > 0) {
+      overlay.requestTranslation(selectedText);
+    }
+  });
+})();

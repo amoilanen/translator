@@ -1,4 +1,10 @@
+import Storage from '../util/Storage.js';
 import { addMessageListener, sendMessage, Messages } from '../Messages.js';
+
+const translationUrls = {
+  'google': 'https://translate.google.com',
+  'bing': 'https://www.bing.com/translator'
+};
 
 function createdPopup() {
   const resultPopup = document.createElement('ts-result-popup');
@@ -6,11 +12,14 @@ function createdPopup() {
   return resultPopup;
 }
 
-function createIFrame() {
+async function createIFrame() {
   const iframe = document.createElement('iframe');
   iframe.setAttribute('name', 'translation-frame');
-  //iframe.src = "https://translate.google.com";
-  iframe.src = "https://www.bing.com/translator";
+
+  const translationEngine = await Storage.get('translation.engine');
+  const translationUrl = translationUrls[translationEngine];
+
+  iframe.src = translationUrl;
   iframe.style.display = 'none';
   document.body.appendChild(iframe);
   return iframe;
@@ -21,9 +30,9 @@ export default class TranslationOverlay {
   constructor() {
   }
 
-  init() {
+  async init() {
     this.resultPopup = createdPopup();
-    this.iframe = createIFrame();
+    this.iframe = await createIFrame();
     addMessageListener(window, Messages.TranslationReady, translation => {
       this.showTranslation(translation);
     });

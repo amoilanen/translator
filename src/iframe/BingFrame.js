@@ -41,6 +41,6 @@ export default class BingFrame {
   }
 
   getTranslationResult() {
-    return this.resultElement.value.toLowerCase();
+    return 'bing: ' + this.resultElement.value.toLowerCase();
   }
 }

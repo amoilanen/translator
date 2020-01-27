@@ -44,6 +44,6 @@ export default class GoogleFrame {
   }
 
   getTranslationResult() {
-    return this.resultElement.innerText;
+    return 'google: ' + this.resultElement.innerText;
   }
 }
