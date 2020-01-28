@@ -1,9 +1,6 @@
-import { addMessageListener, sendMessage, Messages } from '../Messages.js';
+import Frame from './Frame.js';
 
-export default class BingFrame {
-
-  constructor() {
-  }
+export default class BingFrame extends Frame {
 
   get sourceElement() {
     return document.querySelector('#tta_input_ta');
@@ -13,31 +10,14 @@ export default class BingFrame {
     return document.querySelector('#tta_output_ta');
   }
 
-  init() {
-    addMessageListener(window, Messages.TranslationRequest, sourceText =>
-      this.translate(sourceText)
-    );
-    return this;
-  }
-
-  translate(sourceText) {
-    sourceText = sourceText.trim();
+  startTranslation(sourceText) {
     this.sourceElement.value = sourceText;
     this.sourceElement.click();
-    const checkForResultInterval = setInterval(() => {
-      if (this.isTranslationReady(sourceText)) {
-        sendMessage(window.parent, Messages.TranslationReady, this.getTranslationResult());
-        clearInterval(checkForResultInterval);
-      }
-    }, 500);
   }
 
-  isTranslationReady(sourceText) {
-    const displayedSourceText = this.sourceElement.value.trim();
+  isTranslationInProgress() {
     const translation = this.resultElement.value;
-    const isTranslationInProgress = translation.endsWith('...');
-
-    return (displayedSourceText === sourceText) && !isTranslationInProgress;
+    return translation.endsWith('...');
   }
 
   getTranslationResult() {
