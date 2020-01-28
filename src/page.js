@@ -4,7 +4,7 @@ import TranslationOverlay from './page/TranslationOverlay.js';
 
 
 (async function() {
-  await Storage.set('translation.engine', 'bing');
+  await Storage.set('translation.engine', 'yandex');
   const overlay = await new TranslationOverlay().init();
 
   document.addEventListener('selectionchange', event => {

@@ -5,11 +5,13 @@
 
 - Add support for using Bing translate - OK
 
-- Re-factor commonality between GoogleFrame and BingFrame
+- Re-factor commonality between GoogleFrame and BingFrame - OK
+- Add support for using Yandex translate
+
 - Pass source and target languages as part of the translation request to the translator iframe
   Return translation engine name as part of the response
 
-- Add support for using Yandex translate
+- Use all the translation engines at once and pass the results to TranslationOverlay from them
 
 - Enable the user to select the source and target languages for translation and use them
 - Enable the user to select translation engines (possibly several at once)

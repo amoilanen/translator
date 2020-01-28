@@ -41,7 +41,7 @@ export default class Frame {
   }
 
   isTranslationReady(sourceText) {
-    const displayedSourceText = this.sourceElement.value.trim();
+    const displayedSourceText = this.sourceElement.value && this.sourceElement.value.trim();
     return (displayedSourceText === sourceText) && !this.isTranslationInProgress();
   }
 }

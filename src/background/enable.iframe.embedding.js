@@ -6,12 +6,14 @@ const without = (arr, propertyAccessor, withoutProperties) =>
   );
 
 const headerNamesToIgnore = [
-  'x-frame-options'
+  'x-frame-options',
+  'X-Frame-Options'
 ];
 
 const urls = [
   'https://translate.google.com/*',
-  'https://bing.com/*'
+  'https://bing.com/*',
+  'https://translate.yandex.com/*'
 ];
 
 const options = [

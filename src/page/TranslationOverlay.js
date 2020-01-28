@@ -3,7 +3,8 @@ import { addMessageListener, sendMessage, Messages } from '../Messages.js';
 
 const translationUrls = {
   'google': 'https://translate.google.com',
-  'bing': 'https://www.bing.com/translator'
+  'bing': 'https://www.bing.com/translator',
+  'yandex': 'https://translate.yandex.com'
 };
 
 function createdPopup() {
@@ -21,6 +22,13 @@ async function createIFrame() {
 
   iframe.src = translationUrl;
   iframe.style.display = 'none';
+
+  iframe.style.display = 'inline-block';
+  iframe.style.position = 'fixed';
+  iframe.style.top = 0;
+  iframe.style.width = '800px';
+  iframe.style.height = '400px';
+
   document.body.appendChild(iframe);
   return iframe;
 }

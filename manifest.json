@@ -26,7 +26,8 @@
     "all_frames": true,
     "matches": [
       "https://translate.google.com/*",
-      "https://www.bing.com/translator"
+      "https://www.bing.com/translator",
+      "https://translate.yandex.com/*"
     ],
     "js": ["iframe.index.js"],
     "run_at": "document_end"
