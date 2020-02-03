@@ -10,7 +10,7 @@ export default class Frame {
     throw new Error('`resultElement` should be implemented by a subclass');
   }
 
-  startTranslation(sourceText) {
+  startTranslation() {
     throw new Error('`startTranslation` should be implemented by a subclass');
   }
 
@@ -41,7 +41,8 @@ export default class Frame {
   }
 
   isTranslationReady(sourceText) {
-    const displayedSourceText = this.sourceElement.value && this.sourceElement.value.trim();
+    let displayedSourceText = this.sourceElement.value || this.sourceElement.innerText;
+    displayedSourceText = displayedSourceText.trim();
     return (displayedSourceText === sourceText) && !this.isTranslationInProgress();
   }
 }

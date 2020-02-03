@@ -2,16 +2,17 @@
 - Detect which word is currently selected when the extension is active and try to translate it (define a shortcut?), console.log translation - OK
 - Display translation as a popup over the word being clicked - OK
 - Use browser modules to modularize the code - OK
-
 - Add support for using Bing translate - OK
-
 - Re-factor commonality between GoogleFrame and BingFrame - OK
-- Add support for using Yandex translate
+- Add support for using Yandex translate - OK
 
 - Pass source and target languages as part of the translation request to the translator iframe
   Return translation engine name as part of the response
 
-- Use all the translation engines at once and pass the results to TranslationOverlay from them
+- Use all the translation engines at once and pass the results to TranslationOverlay from them, show which results came from which engines
+- Handle several long concurrent translation requests done in short succession: should not break the frames and the overlay
+
+- Bug: scrolling the page should not change the position of ResultPopup
 
 - Enable the user to select the source and target languages for translation and use them
 - Enable the user to select translation engines (possibly several at once)

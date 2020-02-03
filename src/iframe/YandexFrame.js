@@ -16,7 +16,7 @@ export default class YandexFrame  extends Frame {
     }
 
     get sourceElement() {
-      return document.querySelector('#fakeArea');
+      return document.querySelector('.fakearea.textinput');
     }
   
     get resultElement() {
@@ -24,17 +24,14 @@ export default class YandexFrame  extends Frame {
     }
   
     startTranslation(sourceText) {
-      this.translationResultBefore = this.getTranslationResult();
-      document.querySelector('#fakeArea').value = sourceText;
-      simulateEnter(tdocument.querySelector('#fakeArea'));
+      this.translationResultBefore = this.resultElement.textContent;
+      this.sourceElement.innerText = sourceText;
+      simulateEnter(this.sourceElement);
     }
-  
+
     isTranslationInProgress() {
       const translation = this.resultElement.textContent;
-      console.log(`isTranslationInProgress = ${translation !== this.translationResultBefore}`);
-      console.log(`before = "${this.translationResultBefore}"`);
-      console.log(`translation = "${translation}"`);
-      return translation !== this.translationResultBefore;
+      return translation === this.translationResultBefore;
     }
   
     getTranslationResult() {

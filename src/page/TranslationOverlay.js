@@ -22,13 +22,6 @@ async function createIFrame() {
 
   iframe.src = translationUrl;
   iframe.style.display = 'none';
-
-  iframe.style.display = 'inline-block';
-  iframe.style.position = 'fixed';
-  iframe.style.top = 0;
-  iframe.style.width = '800px';
-  iframe.style.height = '400px';
-
   document.body.appendChild(iframe);
   return iframe;
 }
