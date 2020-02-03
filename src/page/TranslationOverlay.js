@@ -7,7 +7,7 @@ const translationUrls = {
   'yandex': 'https://translate.yandex.com'
 };
 
-function createdPopup() {
+function createPopup() {
   const resultPopup = document.createElement('ts-result-popup');
   document.body.appendChild(resultPopup);
   return resultPopup;
@@ -32,7 +32,7 @@ export default class TranslationOverlay {
   }
 
   async init() {
-    this.resultPopup = createdPopup();
+    this.resultPopup = createPopup();
     this.iframe = await createIFrame();
     addMessageListener(window, Messages.TranslationReady, translation => {
       this.showTranslation(translation);
