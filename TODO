@@ -7,7 +7,12 @@
 - Add support for using Yandex translate - OK
 
 - Pass source and target languages as part of the translation request to the translator iframe
-  Return translation engine name as part of the response
+- Enable translating Dutch to English
+  -- GoogleFrame
+  -- BingFrame
+  -- YandexFrame
+
+- Return translation engine name as part of the response, show it in the TranslationOverlay
 
 - Use all the translation engines at once and pass the results to TranslationOverlay from them, show which results came from which engines
 - Handle several long concurrent translation requests done in short succession: should not break the frames and the overlay

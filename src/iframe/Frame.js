@@ -23,15 +23,15 @@ export default class Frame {
   }
 
   init() {
-    addMessageListener(window, Messages.TranslationRequest, sourceText =>
-      this.translate(sourceText)
+    addMessageListener(window, Messages.TranslationRequest, ({text: sourceText, sourceLanguage, targetLanguage}) =>
+      this.translate(sourceText, sourceLanguage, targetLanguage)
     );
     return this;
   }
 
-  translate(sourceText) {
+  translate(sourceText, sourceLanguage, targetLanguage) {
     sourceText = sourceText.trim();
-    this.startTranslation(sourceText);
+    this.startTranslation(sourceText, sourceLanguage, targetLanguage);
     const checkForResultInterval = setInterval(() => {
       if (this.isTranslationReady(sourceText)) {
         sendMessage(window.parent, Messages.TranslationReady, this.getTranslationResult());

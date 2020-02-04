@@ -49,6 +49,12 @@ export default class TranslationOverlay {
   }
 
   requestTranslation(text) {
-    sendMessage(this.iframe.contentWindow, Messages.TranslationRequest, text);
+    const sourceLanguage = "Finnish";
+    const targetLanguage = "English";
+    sendMessage(this.iframe.contentWindow, Messages.TranslationRequest, {
+      sourceLanguage,
+      targetLanguage,
+      text
+    });
   }
 }

@@ -1,7 +1,15 @@
 import Frame from './Frame.js';
 
-function constructFrameUrl(text) {
-  return `https://translate.google.com/#view=home&op=translate&sl=fi&tl=en&text=${text}`;
+const languageCodes = {
+  'English': 'en',
+  'Dutch': 'nl',
+  'Finnish': 'fi'
+};
+
+function constructFrameUrl(text, sourceLanguage, targetLanguage) {
+  const sourceLanguageCode = languageCodes[sourceLanguage];
+  const targetLanguageCode = languageCodes[targetLanguage];
+  return `https://translate.google.com/#view=home&op=translate&sl=${sourceLanguageCode}&tl=${targetLanguageCode}&text=${text}`;
 }
 
 export default class GoogleFrame  extends Frame {
@@ -14,8 +22,8 @@ export default class GoogleFrame  extends Frame {
     return document.querySelector('.tlid-translation.translation');
   }
 
-  startTranslation(sourceText) {
-    window.location.href = constructFrameUrl(sourceText);
+  startTranslation(sourceText, sourceLanguage, targetLanguage) {
+    window.location.href = constructFrameUrl(sourceText, sourceLanguage, targetLanguage);
   }
 
   isTranslationInProgress() {
