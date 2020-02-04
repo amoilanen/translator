@@ -20,6 +20,7 @@
 - Bug: scrolling the page should not change the position of ResultPopup
 
 - Enable the user to select the source and target languages for translation and use them
+  -- Add support for more languages
 - Enable the user to select translation engines (possibly several at once)
 - Use Web components or components from another library (Vue, React, Angular)
 

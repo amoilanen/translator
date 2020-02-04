@@ -1,5 +1,11 @@
 import Frame from './Frame.js';
 
+const languageCodes = {
+  'English': 'en',
+  'Dutch': 'nl',
+  'Finnish': 'fi'
+};
+
 export default class BingFrame extends Frame {
 
   get sourceElement() {
@@ -10,7 +16,17 @@ export default class BingFrame extends Frame {
     return document.querySelector('#tta_output_ta');
   }
 
-  startTranslation(sourceText) {
+  get sourceLanguageElement() {
+    return document.querySelector('#tta_srcsl');
+  }
+
+  get targetLanguageElement() {
+    return document.querySelector('#tta_tgtsl');
+  }
+
+  startTranslation(sourceText, sourceLanguage, targetLanguage) {
+    this.sourceLanguageElement.value = languageCodes[sourceLanguage];
+    this.targetLanguageElement.value = languageCodes[targetLanguage];
     this.sourceElement.value = sourceText;
     this.sourceElement.click();
   }
