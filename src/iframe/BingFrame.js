@@ -1,11 +1,5 @@
 import Frame from './Frame.js';
 
-const languageCodes = {
-  'English': 'en',
-  'Dutch': 'nl',
-  'Finnish': 'fi'
-};
-
 export default class BingFrame extends Frame {
 
   get sourceElement() {
@@ -25,8 +19,8 @@ export default class BingFrame extends Frame {
   }
 
   startTranslation(sourceText, sourceLanguage, targetLanguage) {
-    this.sourceLanguageElement.value = languageCodes[sourceLanguage];
-    this.targetLanguageElement.value = languageCodes[targetLanguage];
+    this.sourceLanguageElement.value = sourceLanguage;
+    this.targetLanguageElement.value = targetLanguage;
     this.sourceElement.value = sourceText;
     this.sourceElement.click();
   }

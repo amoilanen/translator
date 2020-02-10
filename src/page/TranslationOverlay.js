@@ -49,8 +49,8 @@ export default class TranslationOverlay {
   }
 
   requestTranslation(text) {
-    const sourceLanguage = "Dutch";
-    const targetLanguage = "English";
+    const sourceLanguage = "nl";
+    const targetLanguage = "en";
     sendMessage(this.iframe.contentWindow, Messages.TranslationRequest, {
       sourceLanguage,
       targetLanguage,

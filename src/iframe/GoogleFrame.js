@@ -1,15 +1,7 @@
 import Frame from './Frame.js';
 
-const languageCodes = {
-  'English': 'en',
-  'Dutch': 'nl',
-  'Finnish': 'fi'
-};
-
 function constructFrameUrl(text, sourceLanguage, targetLanguage) {
-  const sourceLanguageCode = languageCodes[sourceLanguage];
-  const targetLanguageCode = languageCodes[targetLanguage];
-  return `https://translate.google.com/#view=home&op=translate&sl=${sourceLanguageCode}&tl=${targetLanguageCode}&text=${text}`;
+  return `https://translate.google.com/#view=home&op=translate&sl=${sourceLanguage}&tl=${targetLanguage}&text=${text}`;
 }
 
 export default class GoogleFrame  extends Frame {
